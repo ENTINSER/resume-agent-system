@@ -26,9 +26,9 @@ data/sessions.db
 data/platform.db
 data/checkpoints*.sqlite
 
-# Generated artifacts (root-level only, not api/models/)
-/projects/
-/models/
+# Generated artifacts
+projects/
+models/
 
 # Qdrant local storage (can be rebuilt)
 data/qdrant_storage/

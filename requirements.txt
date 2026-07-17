@@ -1,9 +1,7 @@
 # 保留本文件仅用于向后兼容；依赖的唯一权威来源是 pyproject.toml
 langgraph>=0.2.0,<0.3.0
-langgraph-checkpoint-sqlite>=1.0.0
 langchain>=0.2.0,<0.3.0
 openai>=1.30.0
-mcp>=1.0.0
 python-dotenv>=1.0.0
 docker>=7.0.0
 pytest>=7.0.0
