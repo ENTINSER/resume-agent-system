@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "datasets": {
+    "D": {
+      "role": "D",
+      "version": "v1",
+      "count": 6,
+      "avg_quality_score": 82.5,
+      "min_quality_score": 82.0,
+      "max_quality_score": 85.0,
+      "updated_at": "2026-07-14T10:20:58.656421"
+    },
+    "E": {
+      "role": "E",
+      "version": "v1",
+      "count": 6,
+      "avg_quality_score": 82.5,
+      "min_quality_score": 82.0,
+      "max_quality_score": 85.0,
+      "updated_at": "2026-07-14T10:20:58.660509"
+    },
+    "C": {
+      "role": "C",
+      "version": "v1",
+      "count": 125,
+      "avg_quality_score": 82.0,
+      "min_quality_score": 82.0,
+      "max_quality_score": 82.0,
+      "updated_at": "2026-07-14T10:20:58.663228"
+    },
+    "B": {
+      "role": "B",
+      "version": "v1",
+      "count": 5,
+      "avg_quality_score": 82.0,
+      "min_quality_score": 82.0,
+      "max_quality_score": 82.0,
+      "updated_at": "2026-07-14T10:20:58.659125"
+    }
+  }
+}

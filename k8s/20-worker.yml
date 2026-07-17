@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  namespace: agent-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+        - name: worker
+          image: agent-platform-worker:latest
+          imagePullPolicy: IfNotPresent
+          command:
+            - celery
+            - -A
+            - src.tasks
+            - worker
+            - -l
+            - info
+            - -c
+            - "2"
+          envFrom:
+            - configMapRef:
+                name: agent-platform-config
+            - secretRef:
+                name: agent-platform-secrets
+          volumeMounts:
+            - name: projects
+              mountPath: /app/projects
+            - name: data
+              mountPath: /app/data
+      volumes:
+        - name: projects
+          emptyDir: {}
+        - name: data
+          emptyDir: {}

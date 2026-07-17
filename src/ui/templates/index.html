@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4智能体协作平台 - 控制面板</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>4智能体协作平台</h1>
+            <p class="subtitle">编排器(D) + 开发工程师(B) + 评估员(E) + 训练工程师(C)</p>
+            <div class="auto-refresh-badge">
+                <span class="pulse-dot"></span>
+                页面每3秒自动刷新
+            </div>
+        </header>
+
+        <!-- 通知/Toast 区域 -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- 待审核区域 -->
+        <section id="pending-section" class="pending-section hidden">
+            <div class="alert alert-warning">
+                <h2>🛑 等待人类审核</h2>
+                <p>智能体已完成开发，等待您的决策。请选择以下操作：</p>
+            </div>
+            
+            <div class="review-details">
+                <div class="detail-card">
+                    <h3>项目信息</h3>
+                    <p>会话ID: <span id="session-id">-</span></p>
+                    <p>迭代: <span id="iteration">-</span></p>
+                    <p>评分: <span id="score">-</span></p>
+                    <p>状态: <span id="pass-status">-</span></p>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>成本统计</h3>
+                    <p>Tokens: <span id="tokens">-</span></p>
+                    <p>成本: $<span id="cost">-</span></p>
+                    <p>耗时: <span id="duration">-</span>ms</p>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>代码产出</h3>
+                    <ul id="artifacts-list">
+                        <li>加载中...</li>
+                    </ul>
+                </div>
+                
+                <!-- 训练结果展示 -->
+                <div id="training-card" class="detail-card hidden">
+                    <h3>🔧 训练结果</h3>
+                    <p>模型: <span id="train-model">-</span></p>
+                    <p>状态: <span id="train-status">-</span></p>
+                    <p>训练样本: <span id="train-samples">-</span></p>
+                    <p>验证样本: <span id="val-samples">-</span></p>
+                    <p>脚本路径: <code id="train-script">-</code></p>
+                </div>
+            </div>
+            
+            <!-- 操作反馈提示 -->
+            <div id="action-feedback" class="action-feedback hidden">
+                <p>⏳ <span id="feedback-text">正在处理您的请求...</span></p>
+                <p class="hint">智能体正在执行，请等待页面自动更新（约30-120秒）</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-success" id="btn-approve" onclick="respond('approve')">
+                    ✅ 批准通过
+                </button>
+                <button class="btn btn-warning" id="btn-rewrite" onclick="respond('rewrite')">
+                    🔄 要求重写
+                </button>
+                <button class="btn btn-info" id="btn-evaluate" onclick="respond('evaluate')">
+                    📊 重新评估
+                </button>
+                <button class="btn btn-primary" id="btn-train" onclick="respond('train')">
+                    🎯 开始训练
+                </button>
+            </div>
+        </section>
+
+        <!-- 空闲状态 / 任务启动 -->
+        <section id="idle-section" class="idle-section">
+            <div class="alert alert-info">
+                <h2>🚀 启动新任务</h2>
+                <p>输入项目需求，4智能体将自动开发。</p>
+            </div>
+            
+            <div class="task-form">
+                <textarea 
+                    id="task-input" 
+                    class="task-input" 
+                    placeholder="例如：开发一个Python计算器，支持加减乘除，包含单元测试"
+                    rows="3"
+                ></textarea>
+                <button class="btn btn-primary btn-large" id="btn-start" onclick="startTask()">
+                    ▶️ 启动任务
+                </button>
+            </div>
+            
+            <div id="task-status" class="task-status hidden">
+                <p>⏳ 任务运行中... <span id="task-message">初始化</span></p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="hint">首次运行可能需要1-3分钟下载依赖和构建环境</p>
+            </div>
+            
+            <div id="task-completed" class="task-completed hidden">
+                <div class="alert alert-success">
+                    <h3>✅ 任务完成</h3>
+                    <p id="completed-message">智能体已完成开发</p>
+                    <p class="hint">刷新页面查看最新会话历史</p>
+                </div>
+            </div>
+            
+            <p class="hint">💡 提示：页面每3秒自动检测状态，无需手动刷新</p>
+        </section>
+
+        <!-- 会话历史 -->
+        <section class="history-section">
+            <h2>📋 会话历史 <span class="refresh-hint">(自动刷新中)</span></h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>会话ID</th>
+                        <th>状态</th>
+                        <th>评分</th>
+                        <th>Tokens</th>
+                        <th>成本</th>
+                        <th>更新时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in sessions %}
+                    <tr>
+                        <td>{{ s.session_id[:16] }}...</td>
+                        <td><span class="badge badge-{{ 'success' if s.passed else 'secondary' }}">{{ s.status }}</span></td>
+                        <td>{{ s.overall_score or '-' }}</td>
+                        <td>{{ s.total_tokens or 0 }}</td>
+                        <td>${{ '%.4f'|format(s.total_cost or 0) }}</td>
+                        <td>{{ s.updated_at[:19] if s.updated_at else '-' }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">暂无会话记录</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        // Toast 通知
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('toast-hide');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        // 设置按钮状态
+        function setButtonsLoading(loading) {
+            const buttons = ['btn-approve', 'btn-rewrite', 'btn-evaluate', 'btn-train'];
+            buttons.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    btn.disabled = loading;
+                    if (loading) {
+                        btn.dataset.originalText = btn.textContent;
+                        btn.textContent = '⏳ 处理中...';
+                    } else {
+                        btn.textContent = btn.dataset.originalText || btn.textContent.replace('⏳ 处理中...', '');
+                    }
+                }
+            });
+        }
+        
+        // 每3秒轮询检查状态
+        function checkStatus() {
+            fetch('/api/status')
+                .then(r => r.json())
+                .then(data => {
+                    const pendingSection = document.getElementById('pending-section');
+                    const idleSection = document.getElementById('idle-section');
+                    const taskStatus = document.getElementById('task-status');
+                    const taskMessage = document.getElementById('task-message');
+                    const taskCompleted = document.getElementById('task-completed');
+                    const actionFeedback = document.getElementById('action-feedback');
+                    
+                    // 更新任务状态
+                    if (data.task_running) {
+                        taskStatus.classList.remove('hidden');
+                        taskMessage.textContent = data.task_message || '运行中...';
+                        taskCompleted.classList.add('hidden');
+                    } else {
+                        taskStatus.classList.add('hidden');
+                        // 如果之前有任务运行，显示完成提示
+                        if (document.getElementById('task-input').value === '' && 
+                            !taskCompleted.classList.contains('shown-once')) {
+                            taskCompleted.classList.remove('hidden');
+                            taskCompleted.classList.add('shown-once');
+                        }
+                    }
+                    
+                    // 显示/隐藏审核面板
+                    if (data.has_pending && data.pending) {
+                        // 如果之前是处理中状态，现在出现pending，说明响应已收到
+                        if (actionFeedback && !actionFeedback.classList.contains('hidden')) {
+                            actionFeedback.classList.add('hidden');
+                            setButtonsLoading(false);
+                            showToast('✅ 响应已收到，智能体继续执行中', 'success');
+                        }
+                        
+                        pendingSection.classList.remove('hidden');
+                        idleSection.classList.add('hidden');
+                        updatePendingInfo(data.pending);
+                    } else {
+                        pendingSection.classList.add('hidden');
+                        idleSection.classList.remove('hidden');
+                    }
+                })
+                .catch(err => console.error('轮询失败:', err));
+        }
+        
+        function startTask() {
+            const input = document.getElementById('task-input');
+            const btn = document.getElementById('btn-start');
+            const requirements = input.value.trim();
+            
+            if (!requirements) {
+                showToast('请输入项目需求', 'warning');
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.textContent = '⏳ 启动中...';
+            
+            const formData = new FormData();
+            formData.append('requirements', requirements);
+            
+            fetch('/api/start_task', {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    showToast('✅ 任务已启动！等待审核面板出现...', 'success');
+                    input.value = '';
+                    document.getElementById('task-completed').classList.add('hidden');
+                    checkStatus();
+                } else {
+                    showToast('❌ 启动失败: ' + data.error, 'error');
+                }
+            })
+            .catch(err => {
+                showToast('请求失败: ' + err, 'error');
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = '▶️ 启动任务';
+            });
+        }
+        
+        function updatePendingInfo(info) {
+            document.getElementById('session-id').textContent = info.session_id?.slice(0, 8) || '-';
+            document.getElementById('iteration').textContent = `${info.iteration}/${info.max_iterations}`;
+            document.getElementById('score').textContent = info.overall_score || '-';
+            document.getElementById('pass-status').textContent = info.passed ? '✅ 通过' : '❌ 未通过';
+            document.getElementById('tokens').textContent = info.total_tokens?.toLocaleString() || '-';
+            document.getElementById('cost').textContent = info.total_cost?.toFixed(4) || '-';
+            document.getElementById('duration').textContent = info.total_duration_ms || '-';
+            
+            const artifactsList = document.getElementById('artifacts-list');
+            if (info.code_artifacts && info.code_artifacts.length > 0) {
+                artifactsList.innerHTML = info.code_artifacts.map(a => `<li>${a}</li>`).join('');
+            } else {
+                artifactsList.innerHTML = '<li>无</li>';
+            }
+            
+            // 训练结果
+            const trainingCard = document.getElementById('training-card');
+            if (info.training_jobs && info.training_jobs.length > 0) {
+                const job = info.training_jobs[info.training_jobs.length - 1];
+                trainingCard.classList.remove('hidden');
+                document.getElementById('train-model').textContent = job.model_name || '-';
+                document.getElementById('train-status').textContent = job.status || '-';
+                document.getElementById('train-samples').textContent = job.train_samples || '-';
+                document.getElementById('val-samples').textContent = job.val_samples || '-';
+                document.getElementById('train-script').textContent = job.script_path || '-';
+            } else {
+                trainingCard.classList.add('hidden');
+            }
+        }
+        
+        function respond(feedback) {
+            const feedbackTexts = {
+                'approve': '已批准，正在完成项目...',
+                'rewrite': '要求重写，正在重新开发...',
+                'evaluate': '重新评估，正在检查代码质量...',
+                'train': '开始训练，正在准备数据集...'
+            };
+            
+            // 禁用按钮，显示处理中
+            setButtonsLoading(true);
+            
+            const feedbackDiv = document.getElementById('action-feedback');
+            const feedbackText = document.getElementById('feedback-text');
+            feedbackText.textContent = feedbackTexts[feedback] || '正在处理...';
+            feedbackDiv.classList.remove('hidden');
+            
+            const formData = new FormData();
+            formData.append('feedback', feedback);
+            
+            fetch('/api/respond', {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    showToast('✅ ' + feedbackTexts[feedback], 'success');
+                    // 等待轮询检测到新的 pending 或任务完成
+                } else {
+                    showToast('❌ 发送失败: ' + data.error, 'error');
+                    setButtonsLoading(false);
+                    feedbackDiv.classList.add('hidden');
+                }
+            })
+            .catch(err => {
+                showToast('请求失败: ' + err, 'error');
+                setButtonsLoading(false);
+                feedbackDiv.classList.add('hidden');
+            });
+        }
+        
+        // 启动轮询
+        checkStatus();
+        setInterval(checkStatus, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# Credentials
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# IDE / OS
+.ai_completion/
+.DS_Store
+.idea/
+.vscode/
+
+# Runtime data / logs
+logs/
+data/*.db
+data/*.sqlite
+data/sessions.db
+data/platform.db
+data/checkpoints*.sqlite
+
+# Generated artifacts
+projects/
+models/
+
+# Qdrant local storage (can be rebuilt)
+data/qdrant_storage/
+
+# Keep directory structure
+!data/.gitkeep
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Data subdirectories (generated)
+data/datasets/
+data/ml_eval_dataset/
+data/sft_datasets/
+data/synthetic_examples/
+data/qdrant_storage/

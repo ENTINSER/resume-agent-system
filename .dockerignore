@@ -1,0 +1,56 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local data / logs / outputs
+data/
+logs/
+projects/
+models/
+*.db
+*.sqlite
+*.sqlite3
+
+# Git / CI
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Documentation / misc
+*.md
+docs/
+k8s/
+helm/
+
+# Tests (tests are run in CI, not shipped in production image)
+tests/
+
+# Go gateway has its own Docker context
+api/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/

@@ -1,0 +1,129 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 3s
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: agent
+      POSTGRES_PASSWORD: agent123
+      POSTGRES_DB: agent_platform
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agent -d agent_platform"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:6333/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  init:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    env_file: .env
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://agent:agent123@postgres:5432/agent_platform
+      - QDRANT_URL=http://qdrant:6333
+      - VECTOR_STORE_ENABLED=true
+    command: >
+      sh -c "python -c 'from src.db import init_db; init_db()' && echo 'DB initialized'"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: "no"
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    env_file: .env
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://agent:agent123@postgres:5432/agent_platform
+      - QDRANT_URL=http://qdrant:6333
+      - VECTOR_STORE_ENABLED=true
+    volumes:
+      - ./projects:/app/projects
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./models:/app/models
+    depends_on:
+      init:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    command: celery -A src.tasks worker -l info -c 2
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - "8080:8080"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - PORT=8080
+      - API_KEY=${API_KEY:-}
+      - RATE_LIMIT_RPS=${RATE_LIMIT_RPS:-10}
+      - RATE_LIMIT_BURST=${RATE_LIMIT_BURST:-20}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - ENABLE_METRICS=true
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-*}
+      - SHUTDOWN_TIMEOUT=${SHUTDOWN_TIMEOUT:-30s}
+    depends_on:
+      init:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      worker:
+        condition: service_started
+      qdrant:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/readyz"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  postgres_data:
+  qdrant_data:

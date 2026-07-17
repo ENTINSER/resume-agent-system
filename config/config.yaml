@@ -1,0 +1,126 @@
+# 4智能体协作平台配置
+# 注意：LLM API 密钥、base_url、模型名优先从 .env 文件读取。
+# 此文件主要用于配置编排器行为、智能体角色和评估维度。
+
+llm:
+  # 以下字段仅作为注释说明，实际值请配置在 .env 中：
+  # provider: kimi
+  # model: kimi-k2p5
+  # base_url: https://api.kimi.com/coding/v1
+  # temperature: 0.7
+  # max_tokens: 4096
+  
+  # 这里保留通用默认值，代码不会直接读取此处的 base_url/model
+  temperature: 0.7
+  max_tokens: 4096
+
+orchestrator:
+  max_iterations: 5
+  human_in_the_loop: true
+  checkpoints:
+    - after_research
+    - after_draft
+    - after_review
+
+generation:
+  split_threshold_tokens: 2000
+  chunk_max_tokens: 3072
+  max_completion_tokens_simple: 4096
+  max_completion_tokens_normal: 4096
+  max_completion_tokens_complex: 8192
+
+agents:
+  researcher:
+    name: 研究员
+    description: 收集资料、搜索信息、整理研究笔记
+    tools:
+      - web_search
+    max_search_results: 5
+
+  writer:
+    name: 写手
+    description: 基于研究资料撰写文章
+    max_revisions: 3
+
+  reviewer:
+    name: 审核员
+    description: 检查文章质量、标记问题
+    criteria:
+      - accuracy
+      - completeness
+      - clarity
+      - style
+
+evaluation:
+  enabled: true
+  dimensions:
+    code_quality: 0.3
+    functionality: 0.3
+    performance: 0.2
+    documentation: 0.2
+
+vector_store:
+  enabled: true
+  qdrant_url: http://localhost:6333
+  collection_name: agent_memory
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  vector_size: 384
+  # 远程 Qdrant 不可用时，回退到本地持久化存储
+  local_path: data/qdrant_storage
+  fallback_to_local: true
+
+# 历史项目目录与外部仓库种子配置
+projects:
+  dir: projects
+
+# RAG 检索增强配置
+rag:
+  # 可选 rerank 模型；留空则使用 dense+keyword 混合排序
+  # 示例: sentence-transformers/msmarco-MiniLM-L-6-v2
+  rerank_model: ""
+
+mcp:
+  enabled: true
+  native_function_calling: false   # true 时使用 OpenAI/Anthropic 原生 tools 接口
+  max_tool_rounds: 5
+  # 内置工具开关
+  tools:
+    file_read: true
+    file_write: true
+    file_list: true
+    shell_exec: true
+    web_fetch: true
+    vector_search: true
+
+ml_eval:
+  enabled: true
+  mode: shadow              # shadow / online / disabled
+  weight_ml: 0.3            # Online 模式下 ML 评分权重
+  min_samples: 20           # 自动训练最小样本数
+  dataset_version: v1
+  model_stage: production
+
+sft:
+  enabled: true
+  min_score: 70             # 纳入 SFT 数据集的最低评分
+  min_samples: 50           # 自动触发训练的最小样本数
+  roles: [D, B, E, C]
+  output_formats: [alpaca, sharegpt, mlx]
+  auto_train: false         # 是否在任务内自动启动 MLX 训练进程
+  mlx_timeout: 3600         # MLX 训练超时（秒）
+  mlx_max_retries: 2        # MLX 训练失败重试次数
+
+gateway:
+  port: 8080
+  api_key: ""              # 生产环境请设置，空字符串表示不启用认证（仅本地开发）
+  rate_limit_rps: 10
+  rate_limit_burst: 20
+  log_level: info
+  enable_metrics: true
+  cors_allowed_origins: ["*"]
+  shutdown_timeout: 30s
+
+logging:
+  level: INFO
+  file: logs/agent_system.log
+  sqlite: data/observability.db

@@ -1,0 +1,837 @@
+{
+  "version": "1.0",
+  "models": [
+    {
+      "id": "auto_ml_eval_20260708_030849_7a7e7e",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260708_030849_7a7e7e",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.04031913987696771,
+          "rmse": 0.05150529131319584,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 46
+        },
+        "val": {
+          "mae": 23.770959971634337,
+          "rmse": 32.71495668605789,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 12
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-08T03:08:49.671691"
+    },
+    {
+      "id": "auto_ml_eval_20260708_160917_56e29b",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260708_160917_56e29b",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.04031913987696771,
+          "rmse": 0.05150529131319584,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 46
+        },
+        "val": {
+          "mae": 23.770959971634337,
+          "rmse": 32.71495668605789,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 12
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-08T16:09:17.220987"
+    },
+    {
+      "id": "auto_ml_eval_20260708_171253_64845b",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260708_171253_64845b",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.04031913987696771,
+          "rmse": 0.05150529131319584,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 46
+        },
+        "val": {
+          "mae": 23.770959971634337,
+          "rmse": 32.71495668605789,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 12
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-08T17:12:53.426216"
+    },
+    {
+      "id": "auto_ml_eval_20260708_173310_f84b9f",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260708_173310_f84b9f",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.04031913987696771,
+          "rmse": 0.05150529131319584,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 46
+        },
+        "val": {
+          "mae": 23.770959971634337,
+          "rmse": 32.71495668605789,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 12
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-08T17:33:10.836656"
+    },
+    {
+      "id": "auto_ml_eval_20260708_182448_124ada",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260708_182448_124ada",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.04974332780104359,
+          "rmse": 0.06315101513975213,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 47
+        },
+        "val": {
+          "mae": 23.90066537453616,
+          "rmse": 32.406233655884314,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 12
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-08T18:24:48.395708"
+    },
+    {
+      "id": "auto_ml_eval_20260709_064058_fc740b",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260709_064058_fc740b",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.040988115997092865,
+          "rmse": 0.05333084942793019,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 48
+        },
+        "val": {
+          "mae": 21.745963182792547,
+          "rmse": 30.98565008257293,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 12
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-09T06:40:58.391868"
+    },
+    {
+      "id": "auto_ml_eval_20260709_112643_5496f4",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260709_112643_5496f4",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.05349381703313833,
+          "rmse": 0.06872472038226962,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 48
+        },
+        "val": {
+          "mae": 22.006924996034034,
+          "rmse": 30.211954436963964,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 13
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-09T11:26:43.564563"
+    },
+    {
+      "id": "auto_ml_eval_20260709_152824_e7da8f",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260709_152824_e7da8f",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.05349381703313833,
+          "rmse": 0.06872472038226962,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 48
+        },
+        "val": {
+          "mae": 22.006924996034034,
+          "rmse": 30.211954436963964,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 13
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-09T15:28:24.338366"
+    },
+    {
+      "id": "auto_ml_eval_20260709_154747_b407c6",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260709_154747_b407c6",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.05349381703313833,
+          "rmse": 0.06872472038226962,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 48
+        },
+        "val": {
+          "mae": 22.006924996034034,
+          "rmse": 30.211954436963964,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 13
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-09T15:47:47.161883"
+    },
+    {
+      "id": "auto_ml_eval_20260709_212043_c63206",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260709_212043_c63206",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.03924367769347352,
+          "rmse": 0.05104599520039421,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 50
+        },
+        "val": {
+          "mae": 22.19319410321472,
+          "rmse": 30.093673620925834,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 13
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-09T21:20:43.225893"
+    },
+    {
+      "id": "auto_ml_eval_20260710_075108_ed0fb3",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260710_075108_ed0fb3",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.027805375820722535,
+          "rmse": 0.03532528361989832,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 51
+        },
+        "val": {
+          "mae": 25.342065131526166,
+          "rmse": 31.743725878581532,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 13
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-10T07:51:08.850063"
+    },
+    {
+      "id": "auto_ml_eval_20260712_182523_0ed4b1",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260712_182523_0ed4b1",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.04579405418066994,
+          "rmse": 0.05787513498751437,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 54
+        },
+        "val": {
+          "mae": 24.07358218870476,
+          "rmse": 31.91184391901316,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 14
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-12T18:25:23.221805"
+    },
+    {
+      "id": "auto_ml_eval_20260712_222111_3934ee",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260712_222111_3934ee",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.04579405418066994,
+          "rmse": 0.05787513498751437,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 54
+        },
+        "val": {
+          "mae": 24.07358218870476,
+          "rmse": 31.91184391901316,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 14
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-12T22:21:11.572780"
+    },
+    {
+      "id": "auto_ml_eval_20260712_233151_a0744e",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260712_233151_a0744e",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.03063220288223392,
+          "rmse": 0.03799813698847375,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 56
+        },
+        "val": {
+          "mae": 22.884827062117196,
+          "rmse": 31.622078772087146,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 15
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-12T23:31:51.211136"
+    },
+    {
+      "id": "auto_ml_eval_20260712_234405_33b5af",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260712_234405_33b5af",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.041876504191093365,
+          "rmse": 0.05601837920895594,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 57
+        },
+        "val": {
+          "mae": 22.67154617662173,
+          "rmse": 31.298570139506616,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 15
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-12T23:44:05.492781"
+    },
+    {
+      "id": "auto_ml_eval_20260713_000603_384c0f",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_000603_384c0f",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.07734337408225139,
+          "rmse": 0.09795433545109843,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 59
+        },
+        "val": {
+          "mae": 19.073783738974726,
+          "rmse": 27.035946151368247,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 15
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T00:06:03.599566"
+    },
+    {
+      "id": "auto_ml_eval_20260713_083533_3b2838",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_083533_3b2838",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.12392603948092461,
+          "rmse": 0.16218804280337812,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 60
+        },
+        "val": {
+          "mae": 16.17423773185172,
+          "rmse": 26.19645140365324,
+          "accuracy": 0.9375,
+          "f1": 0.8,
+          "samples": 16
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T08:35:33.940333"
+    },
+    {
+      "id": "auto_ml_eval_20260713_083849_526b95",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_083849_526b95",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.12996013107960072,
+          "rmse": 0.16359424237717665,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 61
+        },
+        "val": {
+          "mae": 15.56212684113359,
+          "rmse": 27.306025181693823,
+          "accuracy": 0.875,
+          "f1": 0.6666666666666666,
+          "samples": 16
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T08:38:49.212062"
+    },
+    {
+      "id": "auto_ml_eval_20260713_085034_7a1441",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_085034_7a1441",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.26105943803109233,
+          "rmse": 0.3507389239211568,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 63
+        },
+        "val": {
+          "mae": 15.476357104620805,
+          "rmse": 21.958878741267373,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 16
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T08:50:34.444753"
+    },
+    {
+      "id": "auto_ml_eval_20260713_092947_a9c862",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_092947_a9c862",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.27087078407387644,
+          "rmse": 0.37029191303510145,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 64
+        },
+        "val": {
+          "mae": 15.343031135851708,
+          "rmse": 21.902770861148596,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 17
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T09:29:47.055807"
+    },
+    {
+      "id": "auto_ml_eval_20260713_111601_c6840b",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_111601_c6840b",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.3455895477052884,
+          "rmse": 0.45863279285645525,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 66
+        },
+        "val": {
+          "mae": 15.188935793186555,
+          "rmse": 22.962671239664687,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 17
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T11:16:01.630936"
+    },
+    {
+      "id": "auto_ml_eval_20260713_162535_959ac2",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_162535_959ac2",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.3394059679656316,
+          "rmse": 0.46182061954673886,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 68
+        },
+        "val": {
+          "mae": 15.030640219998286,
+          "rmse": 22.876671987505805,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 17
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T16:25:35.812374"
+    },
+    {
+      "id": "auto_ml_eval_20260713_163756_8a152b",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_163756_8a152b",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.3394059679656316,
+          "rmse": 0.46182061954673886,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 68
+        },
+        "val": {
+          "mae": 15.030640219998286,
+          "rmse": 22.876671987505805,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 17
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T16:37:56.736261"
+    },
+    {
+      "id": "auto_ml_eval_20260713_172342_8fb662",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_172342_8fb662",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.29666569643743645,
+          "rmse": 0.3844253410171529,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 69
+        },
+        "val": {
+          "mae": 17.077310152008288,
+          "rmse": 25.274475144856588,
+          "accuracy": 0.8888888888888888,
+          "f1": 0.6666666666666666,
+          "samples": 18
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T17:23:42.694920"
+    },
+    {
+      "id": "auto_ml_eval_20260713_220512_c2456e",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260713_220512_c2456e",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.2593807311103429,
+          "rmse": 0.34494174182808557,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 71
+        },
+        "val": {
+          "mae": 20.01034805960997,
+          "rmse": 29.51477885203044,
+          "accuracy": 0.8888888888888888,
+          "f1": 0.6666666666666666,
+          "samples": 18
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-13T22:05:12.290858"
+    },
+    {
+      "id": "auto_ml_eval_20260714_101104_8d7387",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260714_101104_8d7387",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.20678666265283377,
+          "rmse": 0.26889303363849126,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 72
+        },
+        "val": {
+          "mae": 19.54709475781483,
+          "rmse": 31.16196192071149,
+          "accuracy": 0.8947368421052632,
+          "f1": 0.6666666666666666,
+          "samples": 19
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-14T10:11:04.699292"
+    },
+    {
+      "id": "auto_ml_eval_20260714_101451_cb6ec4",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260714_101451_cb6ec4",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.26095903945075594,
+          "rmse": 0.3477550670004765,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 74
+        },
+        "val": {
+          "mae": 18.090347377150476,
+          "rmse": 30.028726997904457,
+          "accuracy": 0.8947368421052632,
+          "f1": 0.6666666666666666,
+          "samples": 19
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-14T10:14:51.534222"
+    },
+    {
+      "id": "auto_ml_eval_20260714_102058_2c6f01",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260714_102058_2c6f01",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.43688195110324407,
+          "rmse": 0.600574073406212,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 76
+        },
+        "val": {
+          "mae": 17.298546442666172,
+          "rmse": 27.814787588998257,
+          "accuracy": 0.8947368421052632,
+          "f1": 0.75,
+          "samples": 19
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-14T10:20:58.785111"
+    },
+    {
+      "id": "auto_ml_eval_20260714_105816_e45d53",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260714_105816_e45d53",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.30767469917854817,
+          "rmse": 0.42624258719386476,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 77
+        },
+        "val": {
+          "mae": 17.798596646093724,
+          "rmse": 29.04799354852521,
+          "accuracy": 0.9,
+          "f1": 0.75,
+          "samples": 20
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-14T10:58:16.393754"
+    },
+    {
+      "id": "auto_ml_eval_20260714_110813_a9a8c2",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260714_110813_a9a8c2",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.3763671615509126,
+          "rmse": 0.4939643451621552,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 79
+        },
+        "val": {
+          "mae": 18.92839478252785,
+          "rmse": 29.419960757480297,
+          "accuracy": 0.9,
+          "f1": 0.75,
+          "samples": 20
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-14T11:08:13.454838"
+    },
+    {
+      "id": "auto_ml_eval_20260714_111909_64a43e",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260714_111909_64a43e",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.37319858601585637,
+          "rmse": 0.5141261364976687,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 80
+        },
+        "val": {
+          "mae": 17.723280845820348,
+          "rmse": 28.608286345255614,
+          "accuracy": 0.9047619047619048,
+          "f1": 0.75,
+          "samples": 21
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-14T11:19:09.532408"
+    },
+    {
+      "id": "auto_ml_eval_20260714_114149_7f2da3",
+      "model_path": "/Users/mingrun/resume-agent-system/models/ml_evaluator/auto_ml_eval_20260714_114149_7f2da3",
+      "stage": "shadow",
+      "metrics": {
+        "train": {
+          "mae": 0.40532850000290643,
+          "rmse": 0.5458045710812593,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "samples": 82
+        },
+        "val": {
+          "mae": 18.08392591799183,
+          "rmse": 30.415560827354764,
+          "accuracy": 0.9047619047619048,
+          "f1": 0.75,
+          "samples": 21
+        }
+      },
+      "tags": {
+        "experiment_name": "auto_ml_eval",
+        "trigger": "auto"
+      },
+      "registered_at": "2026-07-14T11:41:49.177729"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+# 标准 Python 3.11 沙箱镜像
+# 用于 Agent B 的代码安全执行环境
+
+FROM python:3.11-slim
+
+# 安装开发工具
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# 升级 pip
+RUN pip install --no-cache-dir --upgrade pip
+
+# 安装常用测试工具
+RUN pip install --no-cache-dir \
+    pytest \
+    pytest-cov \
+    black \
+    flake8 \
+    mypy
+
+# 预装 LangGraph 生态（M9 项目 01 依赖）
+RUN pip install --no-cache-dir \
+    langgraph \
+    langchain \
+    langchain-core \
+    langchain-openai \
+    langchain-community \
+    openai \
+    langsmith \
+    pytest-asyncio
+
+# 设置工作目录
+WORKDIR /workspace
+
+# 验证安装
+RUN python3 --version && pip3 --version
+
+CMD ["python3"]

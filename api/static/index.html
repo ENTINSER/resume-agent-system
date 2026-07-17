@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4智能体协作平台 - 控制面板</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>4智能体协作平台</h1>
+            <p class="subtitle">编排器(D) + 开发工程师(B) + 评估员(E) + 训练工程师(C)</p>
+            <div class="auto-refresh-badge">
+                <span class="pulse-dot"></span>
+                SSE 实时连接
+            </div>
+        </header>
+
+        <div id="toast-container" class="toast-container"></div>
+
+        <section id="idle-section" class="idle-section">
+            <div class="alert alert-info">
+                <h2>🚀 启动新任务</h2>
+                <p>输入项目需求，4智能体将自动开发。</p>
+            </div>
+
+            <div class="task-form">
+                <textarea
+                    id="task-input"
+                    class="task-input"
+                    placeholder="例如：开发一个Python计算器，支持加减乘除，包含单元测试"
+                    rows="3"
+                ></textarea>
+                <button class="btn btn-primary btn-large" id="btn-start" onclick="startTask()">
+                    ▶️ 启动任务
+                </button>
+            </div>
+        </section>
+
+        <section id="running-section" class="task-status hidden">
+            <p>⏳ 任务运行中... <span id="task-message">初始化</span></p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p class="hint">通过 SSE 实时接收状态更新</p>
+        </section>
+
+        <section id="pending-section" class="pending-section hidden">
+            <div class="alert alert-warning">
+                <h2>🛑 等待人类审核</h2>
+                <p>智能体已完成开发，等待您的决策。</p>
+            </div>
+
+            <div class="review-details">
+                <div class="detail-card">
+                    <h3>项目信息</h3>
+                    <p>任务ID: <span id="task-id">-</span></p>
+                    <p>当前阶段: <span id="current-phase">-</span></p>
+                    <p>状态: <span id="task-status-text">-</span></p>
+                </div>
+
+                <div class="detail-card">
+                    <h3>实时日志</h3>
+                    <pre id="event-log" class="event-log">等待事件...</pre>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-success" id="btn-approve" onclick="respond('approve')">✅ 批准通过</button>
+                <button class="btn btn-warning" id="btn-rewrite" onclick="respond('rewrite')">🔄 要求重写</button>
+                <button class="btn btn-info" id="btn-evaluate" onclick="respond('evaluate')">📊 重新评估</button>
+                <button class="btn btn-primary" id="btn-train" onclick="respond('train')">🎯 开始训练</button>
+            </div>
+        </section>
+
+        <section id="completed-section" class="task-completed hidden">
+            <div class="alert alert-success">
+                <h3>✅ 任务完成</h3>
+                <pre id="result-json"></pre>
+            </div>
+            <button class="btn btn-primary" onclick="resetUI()">启动新任务</button>
+        </section>
+
+        <section class="history-section">
+            <h2>📋 任务历史 <button class="btn btn-small" onclick="loadHistory()">刷新</button></h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>任务ID</th>
+                        <th>状态</th>
+                        <th>阶段</th>
+                        <th>创建时间</th>
+                    </tr>
+                </thead>
+                <tbody id="history-body">
+                    <tr><td colspan="4" class="text-center">加载中...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
